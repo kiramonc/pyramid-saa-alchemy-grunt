@@ -1,0 +1,15 @@
+{
+  "name": "video_store",
+  "version": "0.0.1",
+  "description": "Proyecto Pyramid con SQLAlchemy y grunt",
+  "devDependencies": {
+    "grunt": "^1.0.0",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-newer": "^1.1.2"
+  }
+}

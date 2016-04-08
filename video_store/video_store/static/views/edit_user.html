@@ -1,0 +1,45 @@
+<div>
+    <h2><span class="font-semi-bold">Datos de usuario</span> <span class="smaller">{{ctrl.formData.username}}</span></h2>
+    <form name="formCrearUser" class="form-horizontal css-form" role="form" ng-submit="ctrl.editUser()"
+          method="post" novalidate>
+        {{ctrl.formData.id}}
+        <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label"> Nombre: <br/></label>
+            <div class="col-sm-10">
+                <input id="inputName" type="text" class="form-control" placeholder="Nombre"
+                       name="name" ng-model="ctrl.formData.name" required><br/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputLastName" class="col-sm-2 control-label"> Apellido: <br/></label>
+            <div class="col-sm-10">
+                <input id="inputLastName" type="text" class="form-control" placeholder="Apellido"
+                       name="last_name" ng-model="ctrl.formData.last_name" required/><br/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2 control-label"> Username: <br/></label>
+            <div class="col-sm-10">
+                <input id="inputUsername" type="text" class="form-control" placeholder="Nombre de usuario"
+                       name="username" ng-model="ctrl.formData.username" required><br/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="col-sm-2 col-md-2 control-label"> Password: <br/></label>
+            <div class="col-sm-10 col-md-2">
+                <input id="inputPassword" type="password" class="form-control" placeholder="Password"
+                       name="password" ng-model="ctrl.formData.password" required><br/>
+            </div>
+
+
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" ng-disabled="!formCrearUser.$valid">Guardar</button>
+                <a href="#/users" class="btn btn-default" role="button">Cancelar</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
