@@ -17,6 +17,10 @@ from sqlalchemy.orm import (
     sessionmaker,
     relationship,
     )
+from pyramid.security import (
+    Allow,
+    Everyone,
+    )
 
 from zope.sqlalchemy import ZopeTransactionExtension
 
@@ -77,3 +81,11 @@ class WorkUser(Base):
 
 
 # Index('my_index', Work.name, unique=True, mysql_length=255)
+
+class RootFactory(object):
+    __acl__ = [ (Allow, Everyone, 'all'),
+                (Allow, 'admin', 'edit'),
+                (Allow, 'viewer', 'show')]
+
+    def __init__(self, request):
+        pass

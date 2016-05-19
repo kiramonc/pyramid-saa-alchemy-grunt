@@ -1,0 +1,65 @@
+<div class="col-md-12">
+    <div class="links">
+        <ng-switch on="ctrl.user_login">
+            <ul class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div ng-switch-when="1">
+                        <li role="presentation">
+                            <i class="glyphicon glyphicon-home icon-muted"></i>
+                            <a href="#/">Inicio</a>
+                        </li>
+
+                        <li role="presentation">
+                            <i class="glyphicon glyphicon-bookmark icon-muted"></i>
+                            <a href="#/users">Usuarios</a>
+                        </li>
+
+                        <li role="presentation">
+                            <i class="glyphicon glyphicon-bookmark icon-muted"></i>
+                            <a ng-click="ctrl.logout()">Logout</a>
+                        </li>
+
+                        <li>
+                            <i class="glyphicon glyphicon-cog icon-muted"></i>
+                            <a href="https://github.com/Pylons/pyramid">Github Project</a>
+                        </li>
+
+                        <li>
+                            <i class="glyphicon glyphicon-globe icon-muted"></i>
+                            <a href="irc://irc.freenode.net#pyramid">IRC Channel</a>
+                        </li>
+                    </div>
+
+                    <div ng-switch-when="0">
+                        <li role="presentation">
+                            <i class="glyphicon glyphicon-home icon-muted"></i>
+                            <a href="#/">Inicio</a>
+                        </li>
+
+                        <li role="presentation">
+                            <i class="glyphicon glyphicon-bookmark icon-muted"></i>
+                            <a href="#/users">Usuarios</a>
+                        </li>
+
+                        <li role="presentation">
+                            <i class="glyphicon glyphicon-bookmark icon-muted"></i>
+                            <a ng-click="ctrl.logout()">Logout</a>
+                        </li>
+                    </div>
+
+                    <div ng-switch-when="invitado">
+                        <li>
+                            <i class="glyphicon glyphicon-cog icon-muted"></i>
+                            <a href="https://github.com/Pylons/pyramid">Github Project</a>
+                        </li>
+
+                        <li>
+                            <i class="glyphicon glyphicon-globe icon-muted"></i>
+                            <a href="irc://irc.freenode.net#pyramid">IRC Channel</a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </ng-switch>
+    </div>
+</div>

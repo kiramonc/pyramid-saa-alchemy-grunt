@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .service('deleteObject', ['$http', '$q', deleteObject]);
+        .service('deleteService', ['$http', '$q', deleteService]);
 
-        function deleteObject($http, $q){
+        function deleteService($http, $q){
             this.doDelete = function(urlPost){
                 var deferred = $q.defer();
 
@@ -15,6 +15,7 @@
                 })
                 .error(function(msg, code){
                     deferred.reject(msg);
+                    window.location="#/error/"+code;
                 })
 
                  return deferred.promise;

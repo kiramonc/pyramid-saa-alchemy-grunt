@@ -15,16 +15,28 @@
 
     <!-- Custom styles for this scaffold -->
     <link href="${request.static_url('video_store:static/css/theme.css')}" rel="stylesheet">
+    <link href="${request.static_url('video_store:static/css/ng-table.min.css')}" rel="stylesheet">
     <link href="${request.static_url('video_store:static/css/angular_validation.css')}" rel="stylesheet">
 
     <script src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
+    <script src="${request.static_url('video_store:static/js/angular-local-storage.min.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/smart-table.min.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/ng-table.min.js')}"></script>
     <script src="${request.static_url('video_store:static/js/app.js')}"></script>
-    <script src="${request.static_url('video_store:static/js/userCtrl.js')}"></script>
-    <script src="${request.static_url('video_store:static/js/inicioCtrl.js')}"></script>
-    <script src="${request.static_url('video_store:static/js/save.js')}"></script>
-    <script src="${request.static_url('video_store:static/js/delete.js')}"></script>
-    <script src="${request.static_url('video_store:static/js/edit.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Controllers/loginCtrl.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Controllers/errorCtrl.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Controllers/inicioCtrl.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Controllers/userCtrl.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Directives/menuDirective.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Directives/loginDirective.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Directives/pageSelect.directive.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Services/saveService.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Services/deleteService.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Services/editService.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Services/getService.js')}"></script>
+    <script src="${request.static_url('video_store:static/js/Services/viewService.js')}"></script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -36,49 +48,37 @@
 <body>
 <div class="starter-template">
     <div class="container">
-        <div class="header col-md-12">
-            <div class="col-md-2">
-                <img class="logo img-responsive" src="${request.static_url('video_store:static/img/pyramid.png')}" alt="pyramid web framework">
-              </div>
-            <div class="col-md-10">
-                <div class="content">
-                    <h1><span class="font-semi-bold">Pyramid</span> <span class="smaller">Alchemy scaffold</span></h1>
-                    <p class="lead">Welcome to <span class="font-normal">video_store</span>.</p>
+        <div ng-controller="loginCtrl as ctrl">
+
+            <!-- Header-->
+            <div class="header col-md-12" >
+                <div class="col-md-2">
+                    <img class="logo img-responsive" src="${request.static_url('video_store:static/img/pyramid.png')}" alt="pyramid web framework">
+                  </div>
+                <div class="col-md-10">
+                    <div class="content">
+                        <h1><span class="font-semi-bold">Pyramid</span> <span class="smaller">Alchemy scaffold</span></h1>
+                        <p class="lead">Welcome to <span class="font-normal">video_store</span>.</p>
+                    </div>
                 </div>
+
+                <!-- menu de acuerdo al login-->
+                <menu></menu>
             </div>
 
-            <div class="col-md-12">
-                <div class="links">
-                    <ul class="navbar navbar-default">
-                        <div class="container-fluid">
-                            <li role="presentation">
-                                <i class="glyphicon glyphicon-home icon-muted"></i>
-                                <a href="#/">Inicio</a>
-                            </li>
-                            <li role="presentation">
-                                <i class="glyphicon glyphicon-bookmark icon-muted"></i>
-                                <a href="#/users">Usuarios</a>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-cog icon-muted"></i>
-                                <a href="https://github.com/Pylons/pyramid">Github Project</a>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-globe icon-muted"></i>
-                                <a href="irc://irc.freenode.net#pyramid">IRC Channel</a>
-                            </li>
-                        </div>
+            <!-- formulario solo en caso de que no esté logueado-->
+            <login></login>
 
-                    </ul>
-                </div>
-            </div>
         </div>
 
 
+        <!-- contenido dinámico-->
         <div class="content col-md-12">
             <div ng-view></div>
         </div>
 
+
+        <!-- Footer-->
         <div class="row">
             <div class="copyright">
                 Copyright &copy; Pylons Project

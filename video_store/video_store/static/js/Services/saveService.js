@@ -2,10 +2,10 @@
     'use strict';
     angular
         .module('app')
-        .service('editObject', ['$http', '$q', editObject]);
+        .service('saveService', ['$http', '$q', saveService]);
 
-        function editObject($http, $q){
-            this.doEdit = function(data, urlPost){
+        function saveService($http, $q){
+            this.doCreate = function(data, urlPost){
                 var deferred = $q.defer();
                 var formData = new FormData();
 
@@ -13,7 +13,7 @@
                     formData.append(key, data[key]);
                 }
 
-                return $http.put(urlPost, formData, {
+                return $http.post(urlPost, formData, {
                     headers: {
                         "Content-type": undefined
                     },
@@ -23,6 +23,7 @@
                 })
                 .error(function(msg, code){
                     deferred.reject(msg);
+                    window.location="#/error/"+code;
                 })
 
                 return deferred.promise;

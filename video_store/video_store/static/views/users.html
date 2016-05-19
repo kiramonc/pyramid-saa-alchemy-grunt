@@ -1,5 +1,134 @@
+<div class="btn-group btn-group-justified">
+        <a class="btn btn-info" role="button" ng-click="ctrl.vertipo(ctrl.selectedPredicate['di_decima'])"> Ver tipo </a>
+    </div>
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-12">
+                <span> ({{ctrl.datos.length}}) </span>
+                <!-- Filtrados-->
+                <br/>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group col-md-12">
+                    <label class="col-md-2" for="predicate">Filtro:</label>
+                    <div class="controls col-md-2">
+                        <select class="form-control" id="predicate" ng-change="ctrl.iniciarSelect(ctrl.vertipo(ctrl.datos[0][ctrl.selectedPredicate['value']]))" ng-model="ctrl.selectedPredicate" ng-options="predicate['description'] for predicate in ctrl.predicates"></select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div ng-show="ctrl.vertipo(ctrl.datos[0][ctrl.selectedPredicate['value']])=='string'">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-4" for="comparativaCad">Operación:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="comparativaCad" ng-model="ctrl.selectedComparativa" ng-options="comp['name'] for comp in ctrl.comparativasCadena"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input ng-model="ctrl.inputvalorbusq" placeholder="bound text" class="input-sm form-control" type="text"/>
+                        </div>
+                        <div ng-if="ctrl.selectedPredicate" class="col-md-4">
+                            <a href="" class="btn btn-default" role="button" ng-click="ctrl.changeFilter(ctrl.selectedPredicate['value'],ctrl.inputvalorbusq, ctrl.selectedComparativa)">Agregar</a>
+                        </div>
+                    </div>
+                    <div ng-show="ctrl.vertipo(ctrl.selectedPredicate['di_decima'])=='number'">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-4" for="comparativaNum">Operación:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="comparativaNum" ng-model="ctrl.selectedComparativa" ng-options="comp['name'] for comp in ctrl.comparativasNumber"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input ng-model="ctrl.inputvalorbusq"  placeholder="bound number" class="input-sm form-control" type="text"/>
+                        </div>
+                        <div ng-if="ctrl.selectedPredicate" class="col-md-4">
+                            <a href="" class="btn btn-default" role="button" ng-click="ctrl.changeFilter(ctrl.selectedPredicate['value'],ctrl.inputvalorbusq, ctrl.selectedComparativa)">Agregar</a>
+                        </div>
+                    </div>
+                    <div ng-show="ctrl.vertipo(ctrl.datos[0][ctrl.selectedPredicate['value']])=='date'">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-4" for="comparativaDate">Operación:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="comparativaDate" ng-model="ctrl.selectedComparativa" ng-options="comp['name'] for comp in ctrl.comparativasDate"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input ng-model="ctrl.inputvalorbusq" placeholder="bound date" class="input-sm form-control" type="text"/>
+                        </div>
+                        <div ng-if="ctrl.selectedPredicate" class="col-md-4">
+                            <a href="" class="btn btn-default" role="button" ng-click="ctrl.changeFilter(ctrl.selectedPredicate['value'],ctrl.inputvalorbusq, ctrl.selectedComparativa)">Agregar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-8">
+                    <button class="btn btn-default pull-right" ng-disabled="!ctrl.tableParams.hasFilter()" ng-click="ctrl.clear_filters()">Limpiar Búsqueda</button>
+                    <br/>
+                    <ul class="list-group">
+                        <li  ng-repeat="item in ctrl.lst_filters">
+                            <span class="label label-default">{{item.campo + " " + item.name_fn + " " + item.value}}</span>
+                            <a href="" class="btn btn-danger btn-xs" role="button" ng-click="ctrl.deleteFilter($index)">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <table ng-table-dynamic="ctrl.tableParams with ctrl.columnas" class="table table-condensed table-bordered table-striped table-hover">
+        <tr ng-repeat="row in $data">
+            <td ng-repeat="col in $columns">
+                    {{row[col.field]}}
+            </td>
+        </tr>
+    </table>
+    <p ng-show="ctrl.datos.length==0">
+        <span class="text-muted"> No hay registros !! </span>
+    </p>
+
+
+
+<div class="table-responsive ">
+    <table st-table="ctrl.displayCollection" st-safe-src="ctrl.rowCollection" class="table table-bordered table-striped table-condensed">
+        <thead>
+        <tr>
+            <th ng-repeat="cols in ctrl.columnas" st-sort="{{cols['value']}}">{{cols['description']}}</th>
+        </tr>
+        <tr>
+            <th ng-repeat="cols in ctrl.columnas">
+                <div ng-show="ctrl.isColNumeric(ctrl.rowCollection[0][cols['value']])">
+                    <input st-search="{{cols['value']}}" placeholder="search for {{cols['value']}}" class="form-control" type="search"/>
+                </div>
+
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+			<tr ng-repeat="row in ctrl.displayCollection">
+                <td ng-repeat="cols in ctrl.columnas">{{row[cols['value']]}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-template="/static/views/pagination.custom.html"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
 <div>
-    <a class="btn btn-primary" href="#/new_user">Crear</a>
+    <button class="btn btn-primary" ng-click="ctrl.export_excel()">Excel</button>
+    <br/>
+    <br/>
+
+    <button class="btn btn-primary" ng-click="ctrl.getNew()">Crear</button>
+
     <table class="table table-bordered table-hover">
         <thead><tr>
             <th width="20%"><center>Nombre</center></th>

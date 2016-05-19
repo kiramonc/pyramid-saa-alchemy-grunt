@@ -1,4 +1,14 @@
-<div>
-    {{ctrl.message}}
-</div>
+<ng-switch on="ctrl.user_login">
+    <div class="well" ng-switch-when="1">
+        {{ctrl.message}}<br/>
+
+    </div>
+    <div class="well" ng-switch-when="0">
+        {{ctrl.message}}<br/>
+
+    </div>
+    <div class="well" ng-switch-default>
+
+    </div>
+</ng-switch>
 

@@ -1,0 +1,40 @@
+<ng-switch on="ctrl.user_login">
+    <div ng-switch-when="invitado">
+        <div class="col-md-8">
+            <div class="col-md-12">
+                <center>
+                    <img class="logo img-responsive" src="/static/img/register.png">
+                </center>
+            </div>
+            <center>
+                <h2><span class="font-semi-bold">Bienvenido al sistema </span></h2>
+            </center>
+        </div>
+
+        <div class="col-md-4 box-login">
+            <h2>Login</h2><br>
+            <div class="alert alert-danger" role="alert" ng-if="ctrl.mess!=''">
+                <span id="msj">{{ctrl.mess}}</span>
+            </div>
+            <form ng-submit="ctrl.login()" method="post">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                        <input class="form-control" id="login" type="text" name="login" placeholder="Username"
+                               ng-model="ctrl.user.username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></div>
+                        <input class="form-control" id="password" type="password" name="password" placeholder="Password"
+                               ng-model="ctrl.user.password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success col-md-12">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-switch>
